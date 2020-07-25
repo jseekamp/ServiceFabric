@@ -1,0 +1,7 @@
+{
+  "generator-azuresfcsharp": {
+    "projName": "Portal",
+    "frameworkType": "Reliable Stateless Service",
+    "author": "<your name>"
+  }
+}
