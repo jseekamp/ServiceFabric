@@ -4,6 +4,8 @@ function Uninstall() {
     Exit
 }
 
+Connect-ServiceFabricCluster
+
 $AppPath = "$PSScriptRoot\Portal"
 Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $AppPath -ApplicationPackagePathInImageStore Portal -ShowProgress
 if (!$?) {
