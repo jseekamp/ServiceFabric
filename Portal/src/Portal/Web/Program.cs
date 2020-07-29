@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CoherentSolutions.Extensions.Hosting.ServiceFabric;
+using System.IO;
 
 namespace Web
 {
@@ -18,7 +19,7 @@ namespace Web
                 /*
                     Define stateful service
                 */
-                .DefineStatefulService(
+                .DefineStatelessService(
                     serviceBuilder =>
                     {
                         serviceBuilder
@@ -37,11 +38,11 @@ namespace Web
                                             Set name of the endpoint defined in PackageRoot/ServiceManifest.xml
                                         */
                                         .UseEndpoint("ServiceEndpoint")
-                                        /*
-                                            Use unique service URL integration
-                                        */
-                                        .UseUniqueServiceUrlIntegration()
-                                        .ConfigureWebHost(webHostBuilder => { webHostBuilder.UseStartup<Startup>(); });
+                                        .ConfigureWebHost(webHostBuilder => { 
+                                            webHostBuilder
+                                            .UseContentRoot(Directory.GetCurrentDirectory())
+                                            .UseStartup<Startup>();
+                                        });
                                 });
                     })
                 .Build()
