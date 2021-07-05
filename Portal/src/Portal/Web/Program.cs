@@ -17,7 +17,7 @@ namespace Web
         {
             new HostBuilder()
                 /*
-                    Define stateful service
+                    Define stateless service
                 */
                 .DefineStatelessService(
                     serviceBuilder =>
